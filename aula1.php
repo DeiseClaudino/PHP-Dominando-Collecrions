@@ -1,4 +1,5 @@
 <?php
+require 'TocadorDeMusica.php';
 
 $musicas = new SplFixedArray(2);
 
@@ -10,4 +11,9 @@ $musicas->setSize(4);
 $musicas[2] = 'Rocketstar';
 $musicas[3] = 'Love Yourself';
 
-echo $musicas->getSize();
+// Pega o tamanho do FixedArray 
+// echo $musicas->getSize();
+
+$tocador = new TocadorDeMusica();
+$tocador->adicionarMusicas($musicas);
+$tocador->tocarMusica();
