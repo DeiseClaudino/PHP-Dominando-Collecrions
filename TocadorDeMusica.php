@@ -32,7 +32,63 @@ class TocadorDeMusica
         }
         else
         {
-            echo "Tocando música: ". $this->musicas->current();
+            echo "Tocando música: ". $this->musicas->current() . "<br>";
         }
+    }
+
+    public function adicionarMusica($musica)
+    {
+        $this->musicas->push($musica);
+
+    }
+
+    public function avancarMusica()
+    {
+        $this->musicas->next();
+
+        if(!$this->musicas->valid())
+        {
+            $this->musicas->rewind();
+        }
+    }
+
+    public function voltarMusica()
+    {
+        $this->musicas->prev();
+
+        if(!$this->musicas->valid())
+        {
+            $this->musicas->rewind();
+        }
+    }
+
+    public function exibirMusicas()
+    {
+        for($this->musicas->rewind(); $this->musicas->valid(); $this->musicas->next())
+        {
+            echo "Música: ". $this->musicas->current() . "<br>";
+        }
+
+        $this->musicas->rewind();
+    }
+
+    public function exibirQuantidadeDeMusicas()
+    {
+        echo "Existem: ". $this->musicas->count() . " músicas no tocador <br>";
+    }
+
+    public function adicionarMusicaNoComecoDaPlaylist($musica)
+    {
+        $this->musicas->unshift($musica);
+    }
+
+    public function removerMusicaDoComecoDaPlaylist()
+    {
+        $this->musicas->shift();
+    }
+
+    public function removerUltimaMusicaDaPlaylist()
+    {
+        $this->musicas->pop();
     }
 }

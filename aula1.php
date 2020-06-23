@@ -15,5 +15,28 @@ $musicas[3] = 'Love Yourself';
 // echo $musicas->getSize();
 
 $tocador = new TocadorDeMusica();
+
 $tocador->adicionarMusicas($musicas);
 $tocador->tocarMusica();
+
+// $tocador->adicionarMusica("Havana");
+
+$tocador->avancarMusica();
+$tocador->tocarMusica();
+
+$tocador->voltarMusica();
+$tocador->tocarMusica();
+
+// $tocador->exibirMusicas();
+
+$tocador->exibirQuantidadeDeMusicas();
+
+$tocador->adicionarMusicaNoComecoDaPlaylist("Havana");
+$tocador->exibirMusicas();
+$tocador->exibirQuantidadeDeMusicas();
+
+$tocador->removerMusicaDoComecoDaPlaylist();
+$tocador->exibirMusicas();
+
+$tocador->removerUltimaMusicaDaPlaylist();
+$tocador->exibirMusicas();
