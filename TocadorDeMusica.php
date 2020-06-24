@@ -8,8 +8,9 @@ class TocadorDeMusica
     public function __construct()
     {
         // Inicializa a lista ligada
-        $this->musicas      =  new SplDoublyLinkedList();
-        $this->historico    =  new SplStack(); 
+        $this->musicas          =  new SplDoublyLinkedList();
+        $this->historico        =  new SplStack(); 
+        $this->filaDeDownloads  =  new SplQueue(); 
         $this->musicas->rewind();
 
     }
@@ -97,5 +98,25 @@ class TocadorDeMusica
     public function tocarUltimaMusicaTocada()
     {
         echo "Tocando do histórico: ". $this->historico->pop() ."<br>"; 
+    }
+
+    public function baixarMusicas()
+    {
+        if($this->musicas->count() > 0)
+        {
+            for($this->musicas->rewind(); $this->musicas->valid(); $this->musicas->next())
+            {
+                $this->filaDeDownloads->push($this->musicas->current());
+            }
+
+            for($this->filaDeDownloads->rewind(); $this->filaDeDownloads->valid(); $this->filaDeDownloads->next())
+            {
+                echo "Baixando: " . $this->filaDeDownloads->current() . "...<br>";
+            }
+        }
+        else
+        {
+            echo "Nenhuma música encontrada para baixar";
+        }
     }
 }
