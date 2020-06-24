@@ -8,7 +8,8 @@ class TocadorDeMusica
     public function __construct()
     {
         // Inicializa a lista ligada
-        $this->musicas =  new SplDoublyLinkedList();
+        $this->musicas      =  new SplDoublyLinkedList();
+        $this->historico    =  new SplStack(); 
         $this->musicas->rewind();
 
     }
@@ -33,6 +34,7 @@ class TocadorDeMusica
         else
         {
             echo "Tocando música: ". $this->musicas->current() . "<br>";
+            $this->historico->push($this->musicas->current());
         }
     }
 
@@ -90,5 +92,10 @@ class TocadorDeMusica
     public function removerUltimaMusicaDaPlaylist()
     {
         $this->musicas->pop();
+    }
+
+    public function tocarUltimaMusicaTocada()
+    {
+        echo "Tocando do histórico: ". $this->historico->pop() ."<br>"; 
     }
 }
