@@ -34,8 +34,8 @@ class TocadorDeMusica
         }
         else
         {
-            echo "Tocando música: ". $this->musicas->current() . "<br>";
             $this->historico->push($this->musicas->current());
+            $this->musicas->current()->tocar();
         }
     }
 
