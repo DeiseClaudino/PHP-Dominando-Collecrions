@@ -28,5 +28,8 @@ class Musica
 
     }
 
-
+    public function __toString()
+    {
+        return $this->nome;
+    }
 }
