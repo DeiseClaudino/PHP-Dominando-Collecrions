@@ -10,7 +10,8 @@ class TocadorDeMusica
         // Inicializa a lista ligada
         $this->musicas          =  new SplDoublyLinkedList();
         $this->historico        =  new SplStack(); 
-        $this->filaDeDownloads  =  new SplQueue(); 
+        $this->filaDeDownloads  =  new SplQueue();
+        $this->ranking          =   new Ranking(); 
         $this->musicas->rewind();
 
     }
@@ -118,5 +119,19 @@ class TocadorDeMusica
         {
             echo "Nenhuma música encontrada para baixar";
         }
+    }
+
+    public function exibeRanking()
+    {
+        foreach($this->musicas as $musica)
+        {
+            $this->ranking->insert($musica);
+        }
+
+        foreach($this->ranking as $musica)
+        {
+            echo $musica->getNome() .' - '. $musica->getVezesTocada() . '<br>';
+        }
+
     }
 }
